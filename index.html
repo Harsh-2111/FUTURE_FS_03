@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dakshin Bhavan | Authentic South Indian Culinary Heritage, Vapi</title>
+    <style>
+        :root {
+            --primary-color: #72001c; 
+            --primary-hover: #910024;
+            --accent-gold: #d4af37;
+            --text-dark: #2a190e;
+            --text-muted: #5a4a42;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            border-bottom: 3px solid var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-left: 30px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 15px;
+            position: relative;
+            padding-bottom: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(rgba(42, 25, 14, 0.6), rgba(42, 25, 14, 0.75)), 
+                        url('https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=1600&auto=format&fit=crop') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #f3e8ee;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            padding: 14px 40px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+            border: 1px solid var(--accent-gold);
+            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(114, 0, 28, 0.3);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #eadfcd;
+            padding: 10px;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-img img:hover {
+            transform: rotate(1deg) scale(1.02);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background-color: var(--white);
+            border: 1px solid #eadecc;
+            padding: 10px 24px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+            transition: var(--transition);
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(114, 0, 28, 0.15);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background-color: var(--white);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #edf2f7;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 35px rgba(114, 0, 28, 0.1);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .menu-info {
+            padding: 24px;
+        }
+
+        .menu-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .menu-title-row h4 {
+            font-size: 20px;
+            color: var(--primary-color);
+            font-weight: normal;
+        }
+
+        .menu-price {
+            color: var(--text-dark);
+            font-weight: bold;
+            font-size: 18px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .menu-info p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.4;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .info-panel {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 35px;
+            border-radius: 6px;
+            border-left: 6px solid var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(114, 0, 28, 0.15);
+        }
+
+        .info-panel h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255,243,219,0.15);
+            padding-bottom: 12px;
+            font-weight: normal;
+            color: #fff3db;
+        }
+
+        .info-block {
+            margin-bottom: 25px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .info-block h4 {
+            color: var(--accent-gold);
+            margin-bottom: 6px;
+            font-family: 'Georgia', serif;
+            font-weight: normal;
+            font-size: 18px;
+        }
+
+        .info-block p {
+            font-size: 15.5px;
+            color: #f7fafc;
+            line-height: 1.5;
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            padding: 35px;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            border: 1px solid #eadecc;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            outline: none;
+            font-family: 'Segoe UI', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(114,0,28,0.12);
+        }
+
+        footer {
+            background-color: #150004;
+            color: #a0aec0;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            font-size: 14px;
+            border-top: 5px solid var(--accent-gold);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            header {
+                padding: 5px 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                border-bottom: 2px solid var(--accent-gold);
+                padding: 20px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                margin: 12px 25px;
+                display: block;
+                font-size: 16px;
+            }
+            .hero-content h2 {
+                font-size: 32px;
+            }
+            .hero-content p {
+                font-size: 16px;
+            }
+            section {
+                padding: 50px 20px;
+            }
+            .about-container, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+        
+    <script>
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Vanakkam! We have recorded your dining request and will confirm your table space shortly.');
+            event.target.reset();
+        }
+
+        // Toggle mobile menu visibility smoothly
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Dakshin<span>Bhavan</span></h1>
+            </div>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+                    <li><a href="#about" onclick="toggleMobileMenu()">Our Heritage</a></li>
+                    <li><a href="#menu" onclick="toggleMobileMenu()">Sacred Menu</a></li>
+                    <li><a href="#contact" onclick="toggleMobileMenu()">Find Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Flavors of the Golden South</h2>
+            <p>Experience timeless heirloom recipes from Tamil Nadu, Kerala, Karnataka, and Andhra Pradesh crafted using pure ghee and fresh ground spices.</p>
+            <a href="#menu" class="cta-btn">Explore Menu</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>Our Heritage Story</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-text">
+                <h3>A Legacy of Pure, Traditional Flavors</h3>
+                <p>At Dakshin Bhavan, we preserve ancient culinary traditions. Our specialized stone-ground batters are fermented uniformly for over fourteen hours to secure the lightest, cloud-like textures.</p>
+                <p>Every single sambar variation and chutney blend we construct leverages locally sorted curry leaves, fresh coconut shavings, and custom-roasted spice compositions to honor centuries of tradition.</p>
+            </div>
+            <div class="about-img">
+                <img src="f1.jpg" alt="Traditional South Indian Setting">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="section-title">
+            <h2>The Culinary Compilation</h2>
+        </div>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterMenu('all')">All Delicacies</button>
+            <button class="filter-btn" onclick="filterMenu('tiffin')">Morning Tiffin</button>
+            <button class="filter-btn" onclick="filterMenu('meals')">Afternoon Meals</button>
+            <button class="filter-btn" onclick="filterMenu('beverages')">Beverages</button>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item" data-category="tiffin">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=500&auto=format&fit=crop" alt="Ghee Podi Roast">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Ghee Podi Roast</h4>
+                        <span class="menu-price">₹140</span>
+                    </div>
+                    <p>Crispy, paper-thin golden crepe layered generously with pure clarified butter and spiced lentil gun powder.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="tiffin">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=500&auto=format&fit=crop" alt="Steamed Ghee Idli">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Steamed Ghee Idli</h4>
+                        <span class="menu-price">₹90</span>
+                    </div>
+                    <p>A pair of ultra-fluffy, melt-in-the-mouth steamed rice cakes accompanied by authentic sambar and three varieties of chutneys.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="tiffin">
+                <div class="img-container">
+                    <img src="f2.jpg" alt="Medu Vada">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Crispy Medu Vada</h4>
+                        <span class="menu-price">₹100</span>
+                    </div>
+                    <p>Crunchy, deep-fried savory lentil doughnuts mixed with peppercorns, ginger fragments, and curry leaves.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="tiffin">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?q=80&w=500&auto=format&fit=crop" alt="Rava Masala Dosa">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Rava Masala Dosa</h4>
+                        <span class="menu-price">₹160</span>
+                    </div>
+                    <p>Crisp, lacy crepe made of semolina and rice flour, stuffed with a lightly spiced mashed potato filling.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="meals">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?q=80&w=500&auto=format&fit=crop" alt="Royal South Meals">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Dakshin Royal Meals</h4>
+                        <span class="menu-price">₹280</span>
+                    </div>
+                    <p>A wholesome traditional feast featuring Ponni rice, sambar, rasam, kootu, poriyal, avial, curd, and crisp appalam.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="meals">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=500&auto=format&fit=crop" alt="Malabar Parotta Combo">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Malabar Parotta Combo</h4>
+                        <span class="menu-price">₹180</span>
+                    </div>
+                    <p>Flaky, multi-layered shredded flatbreads served alongside a richly spiced vegetable coconut stew.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="beverages">
+                <div class="img-container">
+                    <img src="f3.jpg" alt="Filter Coffee">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Kumbakonam Coffee</h4>
+                        <span class="menu-price">₹70</span>
+                    </div>
+                    <p>Premium chicory-infused coffee decoction frothed dynamically with boiling milk in a traditional brass tumbler.</p>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="beverages">
+                <div class="img-container">
+                    <img src="f4.jpg" alt="Neer Moru">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-title-row">
+                        <h4>Spiced Neer Moru</h4>
+                        <span class="menu-price">₹60</span>
+                    </div>
+                    <p>Refreshing, churned traditional buttermilk tempered with ginger, green chillies, curry leaves, and coriander leaves.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Plan Your Dining Visit</h2>
+        </div>
+        <div class="contact-container">
+            <div class="info-panel">
+                <h3>Bhavan Locations</h3>
+                <div class="info-block">
+                    <h4>Address</h4>
+                    <p>Heritage Square, Opp. Temple Gate, Core Center, Vapi, Gujarat, India</p>
+                </div>
+                <div class="info-block">
+                    <h4>Traditional Service Hours</h4>
+                    <p>Morning Tiffin: 6:30 AM - 11:30 AM</p>
+                    <p>Royal Lunch Meals: 12:30 PM - 4:00 PM</p>
+                    <p>Evening Tiffin: 5:00 PM - 10:30 PM</p>
+                </div>
+                <div class="info-block">
+                    <h4>Reservations & Catering</h4>
+                    <p>Phone: +91 9409240240</p>
+                    <p>Email: banquet@dakshinbhavan.com</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name of Guest</label>
+                        <input type="text" id="name" required placeholder="Harsh Savalia">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Communications</label>
+                        <input type="email" id="email" required placeholder="harsh@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Event Catering / Group Booking Details</label>
+                        <textarea id="message" rows="4" required placeholder="Mention family size or dates for custom leaf service meals..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn">Send Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dakshin Bhavan Restaurant | Local Business Live Pitch Presentation | Designed with structural CSS frameworks</p>
+    </footer>
+
+</body>
+</html>
